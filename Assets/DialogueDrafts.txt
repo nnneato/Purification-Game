@@ -1,0 +1,39 @@
+Homeowner: 
+(1st time) Oh thank God you're here.
+I really messed up.
+I tried to contact my grandmother via this ouji board
+I wanted to know the combination to her storage unit.
+She passed away recently and the funeral was expensive...
+But I know she had some first edition Mokepon cards in there.
+Unfortunately her name is really similar to that famous anti-gaming activist
+who was murdered last year.
+So when I tried to get in contact with her, I thought of the wrong face and... well...
+Anyway, I have a demon problem now and it's really bringing down my ELO. Can you please help?
+- Heavens yes.
+	Thank you! Go ahead inside.
+	(door unlocks, timer starts, enemies spawn)
+	
+- Hell no.
+	Very funny. Let me know when you're ready.
+
+(Subsequent times) Are you ready now?
+- Yep.
+	Great. Please do your best!
+	(door unlocks, timer starts, enemies spawn)
+- Nope.
+	Let me know when you're ready.
+	
+===
+
+Player (upon defeating all ghosts)
+Looks like that's all of them. I should go talk to the homeowner.
+- Okay.
+
+===
+Homeowner:
+Are you done? Let's see...
+	(Homeowner walks/cutscene)
+
+Yes, the anti-gamer vibes have dissapated. Thank you so much. Here's your payment...
+
+Payment window

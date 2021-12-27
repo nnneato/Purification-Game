@@ -1,0 +1,18 @@
+$ cat .gitignore
+# exclude everything except Assets
+!/Assets
+!/Assets/*
+
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+Library/
+Logs/
+NavMeshComponents.csproj
+NavMeshComponentsEditor.csproj
+Packages/
+ProjectSettings/
+Purification-Game-master.sln
+Simple.sln
+UserSettings/
+obj/
+packages.config
