@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2026305914799056315}
-  - component: {fileID: 7755240446845244825}
+  - component: {fileID: 4735138377142237899}
   m_Layer: 0
   m_Name: Flashlight_and_beam
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7755240446845244825
+--- !u!114 &4735138377142237899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1681305917635608321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8d02215db4af348877e77dbaba225d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec70071ea092b214c83726b8d4f9487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &2468562555252044426
 GameObject:
   m_ObjectHideFlags: 0
