@@ -7,10 +7,13 @@ public class PlayerStats : MonoBehaviour
 {
     [NonSerialized] public int itemsDisturbed;
     [NonSerialized] public int enemiesNeutralized;
+    private GameLogic gameLogic;
 
     void Start()
     {
+        gameLogic = GameObject.FindWithTag("Logic").GetComponent<GameLogic>();
         itemsDisturbed = 0;
+        enemiesNeutralized = 0;
     }
 
     public void ResetItemsDisturbed()

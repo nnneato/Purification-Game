@@ -6,54 +6,33 @@ using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    bool timerOn = false;
+    public bool timerOn = false;
 
     public float currentTime;
     public float startingTime = 0f;
     public float endingTime = 0;
 
     public TextMeshProUGUI timerText;
-    public GameObject logicStuff;
-    private GameLogic gameLogic;
-
-    public GameObject enemy;
-
-    GameObject[] players;
-    private PlayerStats playerStats;
-
-
-    void Start()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        logicStuff = GameObject.FindWithTag("Logic");
-        gameLogic = logicStuff.GetComponent<GameLogic>();
-    }
+    public GameLogic gameLogic;
+    public Animator door;
 
     public void StartTimer()
     {
-        gameLogic.enemies.Add(Instantiate(enemy));
+        door.Play("Open_Door");
+        gameLogic.gamePlaying = true;
+        gameLogic.AddEnemy();
         currentTime = startingTime;
         timerOn = true;
     }
 
     public void StopTimer()
     {
+        gameLogic.gamePlaying = false;
         timerOn = false;
         endingTime = currentTime;
-        Debug.Log(endingTime.ToString("0") + " seconds elapsed. Timer stopped. Here are your stats:");
-        foreach (GameObject player in players)
-        {
-            playerStats = player.GetComponent<PlayerStats>();
-            Debug.Log(player.name + " knocked over " + playerStats.itemsDisturbed + " item(s).");
-            Debug.Log(player.name + " neutralized " + playerStats.enemiesNeutralized + " enemy/enemies.");
-            playerStats.ResetItemsDisturbed();
-            playerStats.ResetEnemiesNeutralized();
-        }
-
-        foreach (GameObject enemy in gameLogic.enemies)
-        {
-            Destroy(enemy);
-        }
+        Debug.Log("Timer stopped.");
+        gameLogic.DestroySpawnedEnemies();
+        gameLogic.ResetPlayerStats();
     }
 
     void Update()

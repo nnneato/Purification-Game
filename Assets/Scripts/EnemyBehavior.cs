@@ -7,24 +7,25 @@ public class EnemyBehavior : MonoBehaviour
 {
     public Transform enemyHitFX;
     public GameObject enemyHitFX_Long;
-    private Transform[] childComponents;
-    private GameObject camObj;
-    private Camera cam;
     public NavMeshAgent agent;
+    public Animator animator;
 
-    private float damageClock;
-    private float damageInterval = .5f;
+    public float damageClock;
+    public float damageInterval = .5f;
     private float movementClock;
     private float movementInterval = 2f;
     private int movementDir;
+    private GameLogic gameLogic;
 
     public int hitPoints;
 
-    private void Start()
+    public void Start()
     {
         damageClock = 0f;
         movementClock = 0f;
         hitPoints = 5;
+
+        animator = this.GetComponentInChildren<Animator>();
 
 
         //switch (gameObject.name)
@@ -33,12 +34,9 @@ public class EnemyBehavior : MonoBehaviour
         //        break;
         //}
 
-        camObj = GameObject.FindGameObjectWithTag("MainCamera");
-        cam = camObj.GetComponent<Camera>();
+        gameLogic = GameObject.FindWithTag("Logic").GetComponent<GameLogic>();
 
-        childComponents = GetComponentsInChildren<Transform>();
-        enemyHitFX_Long = gameObject.transform.GetChild(0).gameObject;
-
+        enemyHitFX_Long.SetActive(false);
     }
 
     private void Update()
@@ -50,35 +48,28 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnemyNeutralized(GameObject killer)
     {
-        Instantiate(enemyHitFX, transform.position, transform.rotation);
-        enemyHitFX_Long.SetActive(true);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (hitPoints != 0)
+        gameObject.SetActive(false);
+        SoundManagement soungMgr = GameObject.FindWithTag("SOUND").GetComponent<SoundManagement>();
+        soungMgr.PlaySound("enemyDeath");
+        if (killer.transform.root.tag == "Player")
         {
-            damageClock += Time.deltaTime;
-            while (damageClock >= damageInterval)
-            {
-                hitPoints -= 1;
-                damageClock -= damageInterval;
-            }
+            PlayerStats killerStats = killer.transform.root.GetComponent<PlayerStats>();
+            killerStats.enemiesNeutralized += 1;
+            gameLogic.enemiesNeutralized += 1;
+        }
+        if (killer.transform.root.tag != "Player")
+        {
+            gameLogic.enemiesNeutralized += 1;
         }
 
-        if (hitPoints <= 0)
+        if (gameLogic.enemiesNeutralized == gameLogic.enemies.Count)
         {
-            EnemyNeutralized(other);
+            Debug.Log("All enemies eliminated");
+            soungMgr.PlaySound("levelComplete");
+            gameLogic.LevelComplete();
         }
-    }
-
-    void EnemyNeutralized(Collider killer)
-    {
-        Destroy(gameObject);
-        PlayerStats killerStats = killer.transform.root.GetComponent<PlayerStats>();
-        killerStats.enemiesNeutralized += 1;
     }
 
     void MoveEnemy()
@@ -89,29 +80,25 @@ public class EnemyBehavior : MonoBehaviour
         switch (movementDir)
         {
             case 0:
-                agent.SetDestination(agent.transform.position + Vector3.forward * 2);
+                agent.SetDestination(agent.transform.position + Vector3.forward * 5);
                 movementClock = 0f;
                 break;
 
             case 1:
-                agent.SetDestination(agent.transform.position + Vector3.back * 2);
+                agent.SetDestination(agent.transform.position + Vector3.back * 5);
                 movementClock = 0f;
                 break;
 
             case 2:
-                agent.SetDestination(agent.transform.position + Vector3.left * 2);
+                agent.SetDestination(agent.transform.position + Vector3.left * 5);
                 movementClock = 0f;
                 break;
 
             case 3:
-                agent.SetDestination(agent.transform.position + Vector3.right * 2);
+                agent.SetDestination(agent.transform.position + Vector3.right * 5);
                 movementClock = 0f;
                 break;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        enemyHitFX_Long.SetActive(false);
-    }
 }

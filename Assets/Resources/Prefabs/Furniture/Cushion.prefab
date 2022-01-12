@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1470905799623952962}
   - component: {fileID: -3587931890629269325}
   - component: {fileID: 6024393004016103010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cushion
   m_TagString: Tippable
   m_Icon: {fileID: 0}

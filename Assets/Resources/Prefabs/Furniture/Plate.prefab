@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1382281518813943781}
   - component: {fileID: 5567744441849997863}
   - component: {fileID: 4503378947673868872}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plate
   m_TagString: Tippable
   m_Icon: {fileID: 0}

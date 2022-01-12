@@ -1,10 +1,7 @@
 $ cat .gitignore
 # exclude everything except Assets
-!/Assets
-/Assets/Models
-/Assets/Resources
-/Assets/TextMesh Pro
-/Assets/Textures
+!/Assets/Scripts
+Assets/*
 
 Assembly-CSharp-Editor.csproj
 Assembly-CSharp.csproj
@@ -15,6 +12,7 @@ NavMeshComponentsEditor.csproj
 Packages/
 ProjectSettings/
 Purification-Game-master.sln
+Purification-Game.ln
 Simple.sln
 UserSettings/
 obj/
